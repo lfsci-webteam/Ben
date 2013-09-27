@@ -1,11 +1,11 @@
 <?xml version='1.0' encoding='utf-8'?>
 <widget id="com.phonegap.hello-world" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
-    <name>HelloWorld</name>
+    <name>Shake to Warm up</name>
     <description>
-        Hello World sample application that responds to the deviceready event.
+        A test of the accelerometer hooks in phonegap, plus some other testing stuff
     </description>
-    <author email="support@phonegap.com" href="http://phonegap.com">
-        PhoneGap Team
+    <author email="rand337@ls.byu.edu" href="http://phonegap.com">
+        Ben
     </author>
     <feature name="http://api.phonegap.com/1.0/device" />
     <preference name="permissions" value="none" />
