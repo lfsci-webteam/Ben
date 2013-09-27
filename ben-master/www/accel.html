@@ -20,6 +20,7 @@
     // Cordova is ready
     //
     function onDeviceReady() {
+		document.getElementById("status").innerHTML = "Device Ready!";
         startWatch();
     }
 
@@ -31,6 +32,7 @@
         var options = { frequency: 200 };
 
         watchID = navigator.accelerometer.watchAcceleration(onSuccess, onError, options);
+		document.getElementById("status").innerHTML = "Watch Started";
     }
 
     // Stop watching the acceleration
@@ -45,6 +47,7 @@
     // onSuccess: Get a snapshot of the current acceleration
     //
     function onSuccess(acceleration) {
+		document.getElementById("status").innerHTML = "Event Fired";
 		if(prevAccel != null) {
 			if((wasDiff(acceleration.x, prevAccel.x) ||
 			wasDiff(acceleration.y, prevAccel.y) ||
@@ -100,7 +103,7 @@
 	<div id="accelerometer" style="color:#ffffff; width:500px; margin-left:auto; margin-right:auto; text-align:center;">
 		<h2 id="warmthStatus">I'm cold...</h2>
 		<h2>Shake to warm up!</h2>
-		<p>UPDATED!</p>
+		<p id="status">Updated, device not ready</p>
 		<p>
 			<span id="redDisplay"></span>
 		</p>
