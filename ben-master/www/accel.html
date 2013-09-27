@@ -56,6 +56,10 @@
 				if(backgroundRed >= 0)
 					backgroundRed -= 1;
 			}
+			document.getElementById("accelDisplay").innerHTML = 
+				"x: " + acceleration.x + " Prev: " + prevAccel.x + "<br/>" + 
+				"y: " + acceleration.y + " Prev: " + prevAccel.y + "<br/>" + 
+				"z: " + acceleration.z + " Prev: " + prevAccel.z;
 		}
 		prevAccel = acceleration;
 		document.body.style.background = "#" + backgroundRed.toString(16) + "0000";
@@ -71,7 +75,7 @@
 		else if(backgroundRed >= 250)
 			message = "YOUCH!";
 		document.getElementById("warmthStatus").innerHTML = message;
-		//document.getElementById("redDisplay").innerHTML = backgroundRed;
+		document.getElementById("redDisplay").innerHTML = "Red Value: " + backgroundRed;
         
 		// element = document.getElementById('accelerometer');
         //element.innerHTML = 'Acceleration X: ' + acceleration.x + '<br />' +
@@ -93,10 +97,13 @@
     </script>
   </head>
   <body bgcolor="#000000">
-	<div id="accelerometer" style="color:#ffffff; width:300px; margin-left:auto; margin-right:auto; text-align:center;">
+	<div id="accelerometer" style="color:#ffffff; width:500px; margin-left:auto; margin-right:auto; text-align:center;">
 		<h2 id="warmthStatus">I'm cold...</h2>
 		<h2>Shake to warm up!</h2>
-		<!--<span id="redDisplay"></span>-->
+		<p>
+			<span id="redDisplay"></span>
+		</p>
+		<div id="accelDisplay"></div>
 	</div>
   </body>
 </html>
