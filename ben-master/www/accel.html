@@ -2,102 +2,6 @@
 <html>
   <head>
     <title>Acceleration Example</title>
-
-    <script type="text/javascript" charset="utf-8" src="cordova-2.0.0.js"></script>
-    <script type="text/javascript" charset="utf-8">
-
-    // The watch id references the current `watchAcceleration`
-    var watchID = null;
-	var prevAccel = null;
-	var backgroundRed = 0;
-	
-	//document.body.style.background = "#000000";
-	
-    // Wait for Cordova to load
-    //
-    document.addEventListener("deviceready", onDeviceReady, false);
-
-    // Cordova is ready
-    //
-    function onDeviceReady() {
-		document.getElementById("status").innerHTML = "Device Ready!";
-        startWatch();
-    }
-
-    // Start watching the acceleration
-    //
-    function startWatch() {
-
-        // Update acceleration every tenth of a second
-        var options = { frequency: 200 };
-
-        watchID = navigator.accelerometer.watchAcceleration(onSuccess, onError, options);
-		document.getElementById("status").innerHTML = "Watch Started";
-    }
-
-    // Stop watching the acceleration
-    //
-    function stopWatch() {
-        if (watchID) {
-            navigator.accelerometer.clearWatch(watchID);
-            watchID = null;
-        }
-    }
-
-    // onSuccess: Get a snapshot of the current acceleration
-    //
-    function onSuccess(acceleration) {
-		document.getElementById("status").innerHTML = "Event Fired";
-		if(prevAccel != null) {
-			if((wasDiff(acceleration.x, prevAccel.x) ||
-			wasDiff(acceleration.y, prevAccel.y) ||
-			wasDiff(acceleration.z, prevAccel.z)) &&
-			backgroundRed < 255) {
-				backgroundRed += 5;
-			}
-			else {
-				if(backgroundRed >= 0)
-					backgroundRed -= 1;
-			}
-			document.getElementById("accelDisplay").innerHTML = 
-				"x: " + acceleration.x + " Prev: " + prevAccel.x + "<br/>" + 
-				"y: " + acceleration.y + " Prev: " + prevAccel.y + "<br/>" + 
-				"z: " + acceleration.z + " Prev: " + prevAccel.z;
-		}
-		prevAccel = acceleration;
-		document.body.style.background = "#" + backgroundRed.toString(16) + "0000";
-		var message = "I'm cold...";
-		if(backgroundRed >= 50 && backgroundRed < 100)
-			message = "Still kinda cold...";
-		else if(backgroundRed >= 100 && backgroundRed < 150)
-			message = "This is comfy";
-		else if(backgroundRed >= 150 && backgroundRed < 200)
-			message = "Nice and toasty!";
-		else if(backgroundRed >= 200 && backgroundRed < 250)
-			message = "Do you smell something burning?";
-		else if(backgroundRed >= 250)
-			message = "YOUCH!";
-		document.getElementById("warmthStatus").innerHTML = message;
-		document.getElementById("redDisplay").innerHTML = "Red Value: " + backgroundRed;
-        
-		// element = document.getElementById('accelerometer');
-        //element.innerHTML = 'Acceleration X: ' + acceleration.x + '<br />' +
-        //                    'Acceleration Y: ' + acceleration.y + '<br />' +
-        //                    'Acceleration Z: ' + acceleration.z + '<br />' +
-        //                    'Timestamp: '      + acceleration.timestamp + '<br />';
-    }
-	
-	function wasDiff(x, y) {
-		return Math.abs(x - y) >= 0.5;
-	}
-
-    // onError: Failed to get the acceleration
-    //
-    function onError() {
-        alert('onError!');
-    }
-
-    </script>
   </head>
   <body bgcolor="#000000">
 	<div id="accelerometer" style="color:#ffffff; width:500px; margin-left:auto; margin-right:auto; text-align:center;">
@@ -109,5 +13,11 @@
 		</p>
 		<div id="accelDisplay"></div>
 	</div>
+	
+	<script type="text/javascript" charset="utf-8" src="cordova-2.0.0.js"></script>
+	<script type="text/javascript" charset="utf-8" src="js/accel.js"></script>
+	<script type="text/javascript">
+		app.initialize();
+	</script>
   </body>
 </html>
